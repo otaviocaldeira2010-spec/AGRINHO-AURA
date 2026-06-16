@@ -1,1 +1,247 @@
 
+/* ==========================================================================
+   PALETA DE CORES ACESSÍVEL (Tons pastéis, terrosos e dessaturados)
+   ========================================================================== */
+:root {
+    --cor-ceu: #e0f2f1;
+    --cor-nuvem: #ffffff;
+    --cor-celeiro: #b38f8f;
+    --cor-celeiro-telhado: #8c6d6d;
+    --cor-plantacao-frente: #a3b899;
+    --cor-plantacao-fundo: #8ca380;
+    --cor-texto: #3e4739;
+    --cor-detalhe: #6e8065;
+    --cor-card-bg: rgba(255, 255, 255, 0.85);
+}
+
+/* ==========================================================================
+   ESTRUTURA GERAL
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--cor-ceu);
+    color: var(--cor-texto);
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* ==========================================================================
+   CENÁRIO DE FUNDO MINIMALISTA (CSS Art)
+   ========================================================================== */
+.cenario-fundo {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Nuvens */
+.nuvem {
+    background: var(--cor-nuvem);
+    position: absolute;
+    border-radius: 50px;
+    opacity: 0.7;
+}
+.nuvem-1 {
+    width: 150px;
+    height: 40px;
+    top: 15%;
+    left: 10%;
+}
+.nuvem-2 {
+    width: 200px;
+    height: 50px;
+    top: 25%;
+    right: 15%;
+}
+
+/* Celeiro */
+.celeiro {
+    position: absolute;
+    bottom: 120px;
+    right: 12%;
+    width: 120px;
+    height: 90px;
+    background-color: var(--cor-celeiro);
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+.celeiro::before {
+    /* Telhado do Celeiro */
+    content: '';
+    position: absolute;
+    top: -30px;
+    left: -10px;
+    width: 140px;
+    height: 30px;
+    background-color: var(--cor-celeiro-telhado);
+    clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+}
+.celeiro-porta {
+    position: absolute;
+    bottom: 0;
+    left: 42px;
+    width: 36px;
+    height: 45px;
+    background-color: #614646;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+/* Camadas de Plantações (Linhas de cultivo curvas) */
+.plantacao-fundo {
+    position: absolute;
+    bottom: 0;
+    width: 120%;
+    height: 160px;
+    left: -10%;
+    background-color: var(--cor-plantacao-fundo);
+    border-radius: 50% 50% 0 0;
+}
+
+.plantacao-frente {
+    position: absolute;
+    bottom: 0;
+    width: 120%;
+    height: 100px;
+    left: -5%;
+    background-color: var(--cor-plantacao-frente);
+    border-radius: 45% 55% 0 0;
+}
+
+/* ==========================================================================
+   CONTEÚDO E INTERATIVIDADE
+   ========================================================================== */
+header {
+    padding: 60px 20px 20px 20px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: var(--cor-detalhe);
+    margin-bottom: 12px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+
+header p {
+    font-size: 1.15rem;
+    max-width: 600px;
+    margin: 0 auto;
+    opacity: 0.9;
+    line-height: 1.4;
+}
+
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    width: 100%;
+}
+
+.conteiner-interativo {
+    background: var(--cor-card-bg);
+    padding: 35px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    transition: font-size 0.2s ease, font-weight 0.2s ease;
+}
+
+/* Menu de Abas */
+.abas-navegacao {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
+    border-bottom: 2px solid rgba(110, 128, 101, 0.2);
+}
+
+.botao-aba {
+    background: none;
+    border: none;
+    padding: 14px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    color: var(--cor-texto);
+    font-weight: 500;
+    transition: all 0.2s ease;
+    position: relative;
+    bottom: -2px;
+}
+
+.botao-aba:hover {
+    color: var(--cor-detalhe);
+    opacity: 0.8;
+}
+
+.botao-aba.ativo {
+    color: var(--cor-detalhe);
+    border-bottom: 3px solid var(--cor-detalhe);
+    font-weight: 600;
+}
+
+/* Áreas de Texto */
+.conteudo-aba {
+    display: none;
+    line-height: 1.7;
+    font-size: 1.05rem;
+    animation: fadeIn 0.4s ease forwards;
+}
+
+.conteudo-aba.ativo {
+    display: block;
+}
+
+.conteudo-aba h2 {
+    margin-bottom: 15px;
+    color: var(--cor-detalhe);
+    font-size: 1.5rem;
+}
+
+/* Rodapé */
+footer {
+    text-align: center;
+    padding: 30px 20px;
+    font-size: 0.9rem;
+    background-color: rgba(140, 163, 128, 0.15);
+    margin-top: 50px;
+    border-top: 1px solid rgba(140, 163, 128, 0.1);
+}
+
+/* Animação Suave de Transição */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================================================
+   ADAPTAÇÃO PARA TELAS MENORES (Celulares)
+   ========================================================================== */
+@media (max-width: 600px) {
+    header h1 { font-size: 2rem; }
+    .abas-navegacao { flex-direction: column; align-items: center; border-bottom: none; }
+    .botao-aba { width: 100%; text-align: center; border-bottom: 2px solid transparent; bottom: 0; }
+    .botao-aba.ativo { border-bottom: 2px solid var(--cor-detalhe); }
+    .celeiro { right: 5%; scale: 0.8; bottom: 100px; }
+}
