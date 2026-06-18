@@ -1,1 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fazenda Agrinho 🌾</title>
 
+<style>
+:root{
+  --brilho: 1;
+  --fonte: 18px;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+  font-size: var(--fonte);
+  filter: brightness(var(--brilho));
+  background:#eaffc2;
+  color:#2b2b2b;
+}
+
+/* FUNDO */
+.fundo{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  background: linear-gradient(#87ceeb, #dfff7a);
+}
+
+/* SOL */
+.sol{
+  position:absolute;
+  top:40px;
+  right:80px;
+  width:140px;
+  height:140px;
+  background: radial-gradient(circle, #fff200, #ff9800);
+  border-radius:50%;
+  box-shadow:0 0 50px yellow;
+}
+
+/* COLINAS */
+.colina{
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:300px;
+  background: linear-gradient(to top, #2e7d32, #7CFC00);
+  clip-path: polygon(0 100%, 0 60%, 15% 75%, 30% 50%, 45% 70%, 60% 45%, 75% 70%, 90% 55%, 100% 70%, 100% 100%);
+}
+
+/* CONTEÚDO */
+header{
+  text-align:center;
+  padding:25px;
+  background:rgba(255,255,255,0.8);
+}
+
+h1{
+  color:#2e7d32;
+  font-size:2.5em;
+}
+
+/* CONTROLES */
+.controles{
+  position:fixed;
+  top:10px;
+  left:10px;
+  background:white;
+  padding:10px;
+  border-radius:10px;
+  box-shadow:0 0 10px rgba(0,0,0,0.2);
+  z-index:10;
+}
+
+/* SEÇÕES */
+section{
+  max-width:1000px;
+  margin:20px auto;
+  background:rgba(255,255,255,0.85);
+  padding:20px;
+  border-radius:12px;
+}
+
+/* CARDS */
+.grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap:10px;
+}
+
+.card{
+  background:#c8f7a0;
+  padding:15px;
+  border-radius:10px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:scale(1.05);
+  background:#a6e56b;
+}
+
+/* BOTÕES */
+button{
+  padding:10px;
+  border:none;
+  border-radius:8px;
+  background:#4caf50;
+  color:white;
+  cursor:pointer;
+  margin:5px;
+}
+
+button:hover{
+  background:#2e7d32;
+}
+
+/* MODAL */
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.6);
+  display:none;
+  justify-content:center;
+  align-items:center;
+}
+
+.modal-content{
+  background:white;
+  padding:20px;
+  border-radius:10px;
+  max-width:400px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="fundo">
+  <div class="sol"></div>
+  <div class="colina"></div>
+</div>
+
+<!-- CONTROLES -->
+<div class="controles">
+  🌞 Brilho<br>
+  <input type="range" min="0.5" max="1.5" step="0.1" value="1"
+  oninput="document.documentElement.style.setProperty('--brilho', this.value)">
+
+  <br><br>
+
+  🔤 Fonte<br>
+  <input type="range" min="14" max="28" value="18"
+  oninput="document.documentElement.style.setProperty('--fonte', this.value + 'px')">
+</div>
+
+<header>
+  <h1>🌾 Fazenda Agrinho Completa</h1>
+  <p>Uma fazenda moderna, sustentável e cheia de vida</p>
+</header>
+
+<!-- SOBRE -->
+<section>
+  <h2>🌱 Sobre a Fazenda</h2>
+  <p>
+    A fazenda Agrinho é um ambiente rural moderno que combina tecnologia com natureza.
+    Aqui existe produção de alimentos, criação de animais e preservação ambiental.
+  </p>
+</section>
+
+<!-- PRODUÇÃO -->
+<section>
+  <h2>🌽 Produção Agrícola</h2>
+  <div class="grid">
+    <div class="card" onclick="abrir('Milho','O milho é uma das principais culturas da fazenda, usado para alimentação humana e animal.')">Milho</div>
+    <div class="card" onclick="abrir('Soja','A soja é exportada e usada para produção de óleo e ração.')">Soja</div>
+    <div class="card" onclick="abrir('Feijão','Fonte essencial de proteína na alimentação.')">Feijão</div>
+    <div class="card" onclick="abrir('Hortaliças','Alface, tomate e verduras frescas diariamente.')">Hortaliças</div>
+  </div>
+</section>
+
+<!-- ANIMAIS -->
+<section>
+  <h2>🐄 Animais da Fazenda</h2>
+  <div class="grid">
+    <div class="card" onclick="abrir('Vacas','Produzem leite diariamente com cuidado e alimentação saudável.')">🐄 Vacas</div>
+    <div class="card" onclick="abrir('Galinha','Produção de ovos frescos todos os dias.')">🐔 Galinhas</div>
+    <div class="card" onclick="abrir('Cavalos','Usados para trabalho e transporte.')">🐎 Cavalos</div>
+  </div>
+</section>
+
+<!-- TECNOLOGIA -->
+<section>
+  <h2>🚜 Tecnologia no Campo</h2>
+  <p>
+    A fazenda utiliza tratores modernos, irrigação automática e sensores de solo
+    para aumentar a produção com sustentabilidade.
+  </p>
+</section>
+
+<!-- CLIMA -->
+<section>
+  <h2>🌤️ Clima da Fazenda</h2>
+  <p id="clima">Hoje o clima está ensolarado e perfeito para plantio 🌞</p>
+  <button onclick="mudarClima()">Mudar Clima</button>
+</section>
+
+<!-- GALERIA -->
+<section>
+  <h2>🌾 Áreas da Fazenda</h2>
+  <div class="grid">
+    <div class="card">Plantação Sul</div>
+    <div class="card">Estábulo Central</div>
+    <div class="card">Horta Orgânica</div>
+    <div class="card">Depósito de Grãos</div>
+  </div>
+</section>
+
+<footer style="text-align:center; padding:20px;">
+  🌾 Projeto Agrinho - Fazenda Sustentável 🌎
+</footer>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <h2 id="titulo"></h2>
+    <p id="texto"></p>
+    <button onclick="fechar()">Fechar</button>
+  </div>
+</div>
+
+<script>
+function abrir(titulo,texto){
+  document.getElementById("modal").style.display="flex";
+  document.getElementById("titulo").innerText=titulo;
+  document.getElementById("texto").innerText=texto;
+}
+
+function fechar(){
+  document.getElementById("modal").style.display="none";
+}
+
+function mudarClima(){
+  const climas = [
+    "Hoje está ensolarado 🌞 perfeito para plantio",
+    "Chuva leve 🌧️ ideal para irrigação natural",
+    "Nublado ☁️ temperatura equilibrada",
+    "Tempo seco 🌾 cuidado com irrigação"
+  ];
+  document.getElementById("clima").innerText =
+    climas[Math.floor(Math.random()*climas.length)];
+}
+</script>
+
+</body>
+</html>
